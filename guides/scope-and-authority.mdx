@@ -1,5 +1,5 @@
 ---
-title: "Managing Scope and Authority in AI Agent Sessions"
+title: "Managing Scope and Authority in AI-Assisted Sessions"
 sidebarTitle: "Scope & Authority"
 description: "How AGENTS.md governs scope containment and authority verification to prevent silent overreach in AI-assisted development sessions."
 ---
@@ -42,7 +42,7 @@ The correct authority lookup order is:
 1. **Operator instruction** — explicit direction from the person running the session
 2. **Canonical project rules** — verified rules that govern the project, if they exist
 3. **Verified workspace state** — what can be confirmed by inspecting the actual workspace
-4. **Local signals** — filename, proximity, freshness, tone — treated last, not first
+4. **Local signals** — filename, freshness, confidence, tone, or proposal — treated last, not first
 
 When authority is missing, conflicting, or not yet closed, the assistant must not proceed. It should surface the gap, name what is missing, and give the smallest action that would unblock the task.
 
