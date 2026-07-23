@@ -1,0 +1,69 @@
+---
+title: "What SensecraftXStudio Solves: AI Drift and Overreach"
+sidebarTitle: "What It Solves"
+description: "Learn which AI failure modes SensecraftXStudio targets: context drift, silent scope expansion, false closure, and assumptions reported as verified facts."
+---
+
+The core failure mode that SensecraftXStudio addresses is not obvious errors — it is the subtler problem where an AI assistant still sounds plausible after its understanding of the project has already drifted. The assistant moves too quickly from the first visible clue to a confident action. The resulting session produces outputs that look complete and read fluently, but rest on unverified assumptions, silent scope expansion, or a misidentified target. By the time the problem surfaces, the agent may have already acted on an incoherent base.
+
+## Common Failure Patterns
+
+These are the recurring patterns that SensecraftXStudio introduces friction against. Each one represents a point where unjustified confidence typically enters an AI-assisted session.
+
+<AccordionGroup>
+  <Accordion title="The nearest file is mistaken for the real target">
+    The assistant acts on the first plausible file it finds rather than closing the actual object being touched. Apparent proximity becomes a substitute for verified identity. The move looks local and contained but lands in the wrong place.
+  </Accordion>
+
+  <Accordion title="A local fix becomes an unrelated cleanup">
+    A bounded, specific task silently expands. The assistant fixes the stated issue and then continues into adjacent code — not because the task required it, but because the opportunity was visible. The operator receives more changes than they asked for with no warning.
+  </Accordion>
+
+  <Accordion title="Cleanup turns into architecture work">
+    What began as tidying a file escalates into structural changes: renamed patterns, extracted abstractions, reorganized modules. The assistant did not surface the expansion before proceeding, so the operator learns about it only in the final summary.
+  </Accordion>
+
+  <Accordion title="An isolated case becomes a permanent abstraction">
+    The assistant generalizes from one instance. A single local pattern becomes a reusable utility, a shared config, or a policy applied across the repository — without the repeated relevance that would justify promoting it to permanent structure.
+  </Accordion>
+
+  <Accordion title="Assumptions are reported as verified facts">
+    The assistant presents inferences, hypotheses, and guesses in the same register as confirmed observations. The operator cannot tell what was actually inspected from what was extrapolated. Epistemic state is flattened into fluent prose.
+  </Accordion>
+
+  <Accordion title="The agent keeps fixing forward on an incoherent base">
+    When the project state is already inconsistent or broken, the assistant continues layering changes on top of it rather than surfacing the incoherence. Each subsequent fix is grounded in an already-compromised state, making the problem harder to recover from.
+  </Accordion>
+
+  <Accordion title="The final summary sounds more complete than the actual result">
+    The closing response reads as a confident declaration of success. But the actual task state contains unresolved items, uninspected areas, or results that were not live-verified. Rhetorical closure substitutes for genuine convergence.
+  </Accordion>
+</AccordionGroup>
+
+## What Changes in Practice
+
+SensecraftXStudio does not change what the assistant is capable of. It changes how the assistant frames, executes, and reports work — making hidden consequences visible before they land.
+
+| Without an operative frame | With `AGENTS.md` active |
+|---|---|
+| The first plausible interpretation becomes the plan. | Competing interpretations remain visible until the target is closed. |
+| Local work silently expands into cleanup or redesign. | Consequential expansion is surfaced before proceeding. |
+| Confidence is inferred from fluent language. | Verified, inferred, hypothetical, and unresolved states remain separate. |
+| The agent reports activity as completion. | Closure depends on live verification and an explicit task state. |
+| Ambiguity is handled by guessing forward. | Ambiguity that changes the move becomes a stop condition. |
+| The final response hides untouched or uninspected areas. | The assistant reports both the touched and untouched scope. |
+
+<Note>
+  The goal is not to make the assistant sound more confident. The goal is to make unjustified confidence harder to hide.
+</Note>
+
+## Go Deeper
+
+<CardGroup cols={2}>
+  <Card title="Stop Conditions" icon="hand" href="/contract/stop-conditions">
+    The specific conditions under which the contract requires the assistant to stop and surface a problem rather than proceed.
+  </Card>
+  <Card title="Final Response Contract" icon="clipboard-check" href="/contract/final-response">
+    How the assistant must close every consequential response — Touch, Ground, State, and Convergence.
+  </Card>
+</CardGroup>

@@ -1,47 +1,53 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Get Started with SensecraftXStudio in Under a Minute"
+sidebarTitle: "Quickstart"
+description: "Drop AGENTS.md into your project root, open a fresh session, send the activation instruction, then give your real task — four steps, nothing to install."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
-
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+SensecraftXStudio requires no installation, build step, or configuration. The entire setup is a single file drop and two lines of text in your AI assistant session. The four steps below take under a minute to complete, and the contract is active for the rest of the session from that point forward.
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Copy AGENTS.md into your project root">
+    Download or copy `AGENTS.md` from the SensecraftXStudio repository and place it at the root of the project where your AI assistant will be working. The file must be accessible to the assistant in its workspace — placing it at the root ensures it is found without ambiguity.
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
 
-    ```bash
-    your-cli init
-    ```
+  <Step title="Start a fresh assistant session">
+    Open a new session with your AI coding assistant and give it access to your workspace. Starting fresh ensures there is no prior session context that could silently subordinate the contract before it is activated.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
 
-    ```bash
-    your-cli start
+  <Step title="Send the activation instruction">
+    Before giving the assistant any task, send this instruction exactly:
+
+    ```text
+    Read AGENTS.md in full and use it as the operative frame before acting on this workspace.
     ```
+
+    This instruction does three things: it directs the assistant to read the file in full, it establishes the contract as the operative frame (not background reading), and it scopes that frame to the current workspace before any action begins.
+  </Step>
+
+  <Step title="Give the real task">
+    Once the assistant confirms activation, give it the actual work you need done. The contract is now the governing frame for how the assistant reads, executes, and reports on that task.
+
+    <CodeGroup>
+      ```text Fix a failing build
+      Review this repository and identify the smallest safe fix for the failing build.
+      ```
+
+      ```text Implement a bounded change
+      Implement the requested change without expanding the existing architecture.
+      ```
+
+      ```text Compare approaches
+      Compare these two approaches, separate verified evidence from assumptions, and recommend the smallest justified move.
+      ```
+    </CodeGroup>
   </Step>
 </Steps>
 
 <Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
-
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+  Keep AGENTS.md active for the full session, not just at the start. The contract governs every response — not only the first one. If the assistant starts treating it as background context or stops reflecting its constraints in subsequent moves, that is drift, and the contract needs to be re-activated before proceeding.
 </Tip>
+
+<Note>
+  Contract drift happens gradually: the contract becomes a one-time read, then memory-only guidance, then background context with no effect on the next move. Learn what drift looks like and how to recover at [/contract/activation](/contract/activation).
+</Note>

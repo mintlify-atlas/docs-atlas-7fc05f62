@@ -1,0 +1,91 @@
+---
+title: "Running a Disciplined AI Session with AGENTS.md"
+sidebarTitle: "Session Workflow"
+description: "How a properly contracted AI session flows from activation through task framing, minimal execution, live verification, and structured closure."
+---
+
+An uncontracted AI session has no fixed frame: the assistant constructs its plan from the first plausible interpretation, expands local work silently, and reports activity as completion. A contracted session — one where `AGENTS.md` is the active operative frame — introduces deliberate friction at each point where unjustified confidence would otherwise enter. The assistant must make the real object, authority, scope, and epistemic state visible before and after every consequential move.
+
+## The Session Lifecycle
+
+<Steps>
+  <Step title="Activate">
+    Before giving any task, give the assistant the activation instruction:
+
+    ```text
+    Read AGENTS.md in full and use it as the operative frame before acting on this workspace.
+    ```
+
+    Activation means `AGENTS.md` governs how the next response is read, framed, and approached — not only what actions are permitted. This instruction must come first, in the same session turn or immediately before the task.
+  </Step>
+  <Step title="Frame the task">
+    Before acting, the assistant closes context along three axes:
+
+    - **Object** — the real target being inspected or changed, distinct from the stated request
+    - **Authority** — who or what authorizes the move; not inferred from filename, freshness, or tone
+    - **Mode** — the single operating mode the task requires
+
+    The assistant must also identify the destination of any output, the evidence needed to proceed, and any plausible alternative interpretations of the task.
+  </Step>
+  <Step title="Read the move">
+    Before executing, the assistant determines whether the proposed move stays contained or expands scope, risk, or structure.
+
+    - **Contained move** → proceed
+    - **Move that expands scope, risk, or structure** → surface it before proceeding
+
+    Apparent locality does not prove contained consequence. The assistant reads enough of the surrounding system to judge whether the move remains inside the requested scope.
+  </Step>
+  <Step title="Execute minimally">
+    Once the move is justified, the assistant uses the smallest correct intervention:
+
+    - the smallest correct read
+    - the smallest correct change
+    - no opportunistic restructuring, cleanup, or abstraction
+
+    It does not silently transform a bug fix into a cleanup, a cleanup into architecture work, or a local preference into repository policy.
+  </Step>
+  <Step title="Verify and close">
+    Before marking the task converged, the assistant confirms that the live surface — rendered output, active preview, open file, or deployed artifact — reflects the current source state. A stale cache, mismatched branch, or artifact built from an older version is a hold condition, not a minor detail.
+  </Step>
+  <Step title="Final response">
+    For any response that includes a consequential change, recommendation, or finding, the assistant closes with four compact fields:
+
+    - **Touch** — what changed and what remained untouched
+    - **Ground** — the files, evidence, rules, or verified observations supporting the move
+    - **State** — what is verified, inferred, unresolved, or not inspected
+    - **Convergence** — whether the task is converged, open, blocked, or divergent
+
+    These fields must reflect the actual task state. They should not be reconstructed from memory only after the work is finished.
+  </Step>
+</Steps>
+
+## Contract Drift
+
+The contract has drifted when `AGENTS.md` is no longer the active operative frame governing the current response.
+
+<Accordion title="What does drift look like?">
+  Drift is present when the contract has become any of the following:
+
+  - **A one-time reading** — the assistant read `AGENTS.md` at the start of the session and has since stopped applying it
+  - **Memory-only guidance** — the contract exists in memory but does not shape how the next move is chosen or reported
+  - **Background context with no effect** — `AGENTS.md` is acknowledged but not reflected in execution
+  - **Subordinate to nearby file assumptions** — the assistant treats inferences drawn from adjacent files as overriding the operative contract
+  - **A rhetorical reference not reflected in execution** — the assistant cites `AGENTS.md` in its response but does not apply its constraints to the actual move
+
+  Drift does not always surface as an obvious error. The assistant may still sound plausible and produce useful output. The risk is that unjustified confidence re-enters the session without either party noticing.
+</Accordion>
+
+### Re-entering the Contract
+
+When drift is detected — by the operator or by the assistant — the correct recovery is re-entry:
+
+1. Give the activation instruction again
+2. Reread `AGENTS.md` in full before continuing
+3. Re-establish the real target and authority
+4. Resume only after the operative frame is active again
+
+Do not attempt to continue the current task while drift is present. Re-entry is the smallest safe unblock move.
+
+<Tip>
+  For consequential work, ask the assistant to produce the Touch, Ground, State, and Convergence fields at the end of each step, not only at the very end of the session. This keeps the epistemic state inspectable throughout — and makes drift easier to catch before it compounds.
+</Tip>

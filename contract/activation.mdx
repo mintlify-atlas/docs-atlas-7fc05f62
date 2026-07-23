@@ -1,0 +1,59 @@
+---
+title: "Contract Activation and Drift Recovery in AGENTS.md"
+sidebarTitle: "Activation"
+description: "How to activate the AGENTS.md contract, what drift looks like in practice, and the re-entry procedure when the operative frame is lost."
+---
+
+Activating the contract means more than reading the file once. It means that `AGENTS.md` governs how the assistant frames, executes, verifies, and reports the current task — not only what actions are permitted. The activation instruction must be given at the start of a fresh session so that the contract becomes the operative frame before any inspection or action begins.
+
+## Canonical Activation Instruction
+
+Paste this instruction at the start of any session where the contract should apply:
+
+```text
+Read AGENTS.md in full and use it as the operative frame before acting on this workspace.
+```
+
+## Activation Rules
+
+The following five rules define what activation means and requires:
+
+1. This file is an active operational contract, not passive text or documentation.
+2. Read this file in full before proceeding.
+3. Activation means: this file governs how the next response is read, framed, and approached — not only what actions are permitted.
+4. This contract remains active for the session unless the operator explicitly states it does not apply to the current task.
+5. If drift is present, do not proceed. Re-entry means: reread this file in full and activate it as the operative frame before continuing.
+
+## What Drift Looks Like
+
+Drift is present when `AGENTS.md` is no longer the active frame for the next response. Each pattern below describes a form of drift — recognising them is the first step in re-entry.
+
+<AccordionGroup>
+  <Accordion title="Treating AGENTS.md as a one-time read">
+    The assistant read the file at the start of the session but no longer applies its rules when framing subsequent responses. The contract has been consumed rather than held active.
+  </Accordion>
+  <Accordion title="Memory-only guidance">
+    The contract exists only as a recalled summary in the assistant's context window. Its rules are not being consulted as a live frame; they are being approximated from memory, which is subject to omission and distortion.
+  </Accordion>
+  <Accordion title="Background context with no effect on next move">
+    The assistant acknowledges the contract when asked but does not let it shape the actual structure, scope, or reporting of the next move. It is present in name but absent in execution.
+  </Accordion>
+  <Accordion title="Subordinate to assumptions inferred from nearby files">
+    The assistant has allowed signals from nearby files — filename, tone, recency, or apparent convention — to override or narrow the rules the contract defines. Local surface signals are not an authority source under this contract.
+  </Accordion>
+  <Accordion title="A rhetorical reference not reflected in execution">
+    The assistant mentions the contract in its response but does not actually apply it. The citation provides the appearance of grounded operation without the substance.
+  </Accordion>
+</AccordionGroup>
+
+## Re-Entry Procedure
+
+When drift is detected, follow these steps before continuing any task work:
+
+1. Reread `AGENTS.md` in full.
+2. Re-establish the current target and the authority under which the move is being made.
+3. Resume only after the operative frame is active again — not before.
+
+<Warning>
+  Drift is a stop condition. Do not continue executing when the contract is not the active frame. Proceeding under drift produces responses that may sound grounded but are not governed by the contract's rules for scope, authority, and reporting.
+</Warning>

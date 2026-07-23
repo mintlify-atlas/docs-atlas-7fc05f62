@@ -1,0 +1,71 @@
+---
+title: "SensecraftXStudio: AI Operating Contract for Developers"
+sidebarTitle: "Introduction"
+description: "SensecraftXStudio is a single AGENTS.md file — an active operating contract governing how AI coding agents inspect, act, verify, and report on real work."
+---
+
+SensecraftXStudio is not a library, framework, SDK, or prompt collection. It is one reusable file — `AGENTS.md` — that you copy into a project to establish how an AI assistant must read, frame, execute, and report on work before it acts. When an assistant has drifted from accurate understanding but still sounds plausible, the contract introduces friction at exactly those points where unjustified confidence typically enters: before acting on a target, before expanding scope, and before declaring a task complete.
+
+<Note>
+  `AGENTS.md` is an active operational contract, not passive documentation. Treating it as a one-time read or background context is drift. The contract must remain the operative frame for every response throughout the session.
+</Note>
+
+## What SensecraftXStudio Is
+
+`AGENTS.md` defines how an AI assistant should approach work with operational consequence. Once activated, it governs how the assistant:
+
+- inspects the real target before acting on it;
+- distinguishes verified facts from assumptions and inferences;
+- avoids silently expanding a small, bounded task;
+- stops when authority or context is unclear rather than guessing forward;
+- prefers the smallest correct intervention over opportunistic restructuring;
+- verifies the live result before declaring completion;
+- reports what changed, what remains unresolved, and what was not inspected.
+
+## What SensecraftXStudio Is Not
+
+SensecraftXStudio governs how work is approached. It does not make project decisions by itself.
+
+| It is | It is not |
+|---|---|
+| An `AGENTS.md` operating contract | An autonomous agent |
+| A reusable frame for AI coding agents | An SDK or software runtime |
+| A boundary for inspection, execution, and reporting | A replacement for technical judgment |
+| A way to make scope expansion and uncertainty visible | A guarantee that every host preserves instructions perfectly |
+| A lightweight file that travels with a repository | A generic collection of prompts |
+
+## Who It Is For
+
+SensecraftXStudio is most useful when the assistant can inspect or affect real project material. It is intended for:
+
+- **Developers** using AI agents inside existing repositories;
+- **Maintainers** reviewing AI-generated changes;
+- **Technical leads** delegating bounded implementation work;
+- **Operators** using assistants for repository analysis;
+- **Teams** that need a clearer distinction between inference and verification;
+- **Projects** where a plausible but misplaced change can create real maintenance cost.
+
+## Repository Contents
+
+| File | Purpose |
+|---|---|
+| 🧠 `AGENTS.md` | Canonical operational contract for AI-assisted project work. |
+| 📘 `README.md` | Human-facing explanation and adoption guide. |
+| 📜 `LICENSE` | CC BY-SA 4.0 license notice. |
+
+## Where to Go Next
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Activate SensecraftXStudio in under a minute with four steps.
+  </Card>
+  <Card title="What It Solves" icon="magnifying-glass" href="/what-it-solves">
+    Understand the specific AI failure modes this contract addresses.
+  </Card>
+  <Card title="Contract Overview" icon="file-contract" href="/contract/overview">
+    Explore the full structure of the AGENTS.md operating contract.
+  </Card>
+  <Card title="Adoption Guide" icon="map" href="/guides/adoption">
+    Learn how to integrate SensecraftXStudio into your team's workflow.
+  </Card>
+</CardGroup>

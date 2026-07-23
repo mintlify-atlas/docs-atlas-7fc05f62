@@ -1,0 +1,93 @@
+---
+title: "Managing Scope and Authority in AI Agent Sessions"
+sidebarTitle: "Scope & Authority"
+description: "How AGENTS.md governs scope containment and authority verification to prevent silent overreach in AI-assisted development sessions."
+---
+
+Two failure modes appear consistently in AI-assisted development: scope expansion and authority inference. An agent given a small task frequently expands it into adjacent cleanup, restructuring, or architecture work — without surfacing this expansion. The same agent routinely infers authority to make changes from surface signals like filename, confidence, freshness, or tone — rather than verifying that authority exists. `AGENTS.md` addresses both problems through explicit contract rules that apply before any move is executed.
+
+## The Scope Problem
+
+AI coding agents often move too quickly from the first visible clue to a confident action. A local task becomes an unrelated cleanup. A cleanup becomes architecture work. One example becomes a permanent abstraction. A review becomes implementation. Each of these expansions can happen silently, without the operator being informed or asked.
+
+`AGENTS.md` governs scope through Horizontal Plane Axis B: **Read the move before executing it.**
+
+Before acting, the assistant must determine whether the proposed move:
+
+- stays inside the requested scope
+- changes project structure
+- creates new policy or abstraction
+- affects unrelated files or systems
+- introduces irreversible or costly consequences
+- depends on an unverified interpretation
+- excludes another plausible path
+
+The contract rule is direct:
+
+- **Contained move** → proceed
+- **Move that expands scope, risk, or structure** → surface it before proceeding
+
+<Note>
+  Apparent locality does not prove contained consequence. A change that touches only one file may still affect project structure, external destinations, or future decisions in ways that are not visible from the file itself. The assistant must read the surrounding system before acting on any point within it.
+</Note>
+
+## The Authority Problem
+
+The contract's second derived invariant states clearly: **authority is not inferred from surface signals.**
+
+Filename, freshness, confidence, tone, or proposal do not establish that the assistant may act. An assistant that proceeds because a file is nearby, recent, or named in a confident way is deriving authority from the wrong source.
+
+The correct authority lookup order is:
+
+1. **Operator instruction** — explicit direction from the person running the session
+2. **Canonical project rules** — verified rules that govern the project, if they exist
+3. **Verified workspace state** — what can be confirmed by inspecting the actual workspace
+4. **Local signals** — filename, proximity, freshness, tone — treated last, not first
+
+When authority is missing, conflicting, or not yet closed, the assistant must not proceed. It should surface the gap, name what is missing, and give the smallest action that would unblock the task.
+
+## What Counts as Operational Consequence
+
+The contract applies to work with operational consequence — any output, recommendation, or action that can affect state, decisions, or real destinations outside the conversation itself.
+
+Operational consequence includes effects on:
+
+- Repository state
+- Implementation choices
+- Project structure
+- External destinations
+- Technical decisions
+- Review outcomes
+- Closure claims
+
+Applicable work types include repository orientation, workspace analysis, material inspection, structured comparison, decision support, implementation, review, and verification.
+
+The contract constrains how these activities are approached. It does not supply missing domain knowledge or authorize actions by itself.
+
+<Warning>
+  The contract does not make architectural or content decisions on behalf of the project. Its job is to govern how those decisions are approached, bounded, and executed. Scope containment and authority verification are preconditions for action — they do not replace the operator's judgment about what the project should do.
+</Warning>
+
+## Execution Discipline
+
+Once a move is justified, the contract requires the smallest correct intervention. The assistant should not silently transform:
+
+- a bug fix into a cleanup
+- a cleanup into architecture work
+- a review into implementation
+- one example into a reusable framework
+- a local preference into repository policy
+- an unresolved assumption into a completion claim
+
+Repeated and demonstrated relevance is the threshold for promoting a local solution into permanent structure. A single instance does not meet that threshold.
+
+## Related Contract Sections
+
+<CardGroup cols={2}>
+  <Card title="Stop Conditions" icon="octagon-xmark" href="/contract/stop-conditions">
+    The full list of hold conditions that prevent the assistant from proceeding, including scope expansion, missing authority, and incoherent base state.
+  </Card>
+  <Card title="Horizontal Plane" icon="arrows-left-right" href="/contract/horizontal-plane">
+    The three operating axes — close context, read the move, execute minimally — that structure every contracted session.
+  </Card>
+</CardGroup>

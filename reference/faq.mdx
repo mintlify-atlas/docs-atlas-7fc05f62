@@ -1,0 +1,43 @@
+---
+title: "SensecraftXStudio FAQ: Common Questions Answered"
+sidebarTitle: "FAQ"
+description: "Answers to the most common questions about using, configuring, and understanding SensecraftXStudio and its AGENTS.md operating contract."
+---
+
+The following answers cover the most frequently asked questions about SensecraftXStudio — what it does, how to use it correctly, what its limits are, and how to handle edge cases that arise during real sessions with AI assistants.
+
+<Accordion title="Does AGENTS.md work with any AI assistant?">
+AGENTS.md is designed for any AI assistant that can read files and use them as an operative frame for a session. Its effectiveness depends on the assistant's ability to maintain the contract as an active frame — not just read it once. Some hosts preserve instructions more reliably than others.
+</Accordion>
+
+<Accordion title="Is this a replacement for tests, code review, or access controls?">
+No. SensecraftXStudio governs how an AI assistant approaches work — it does not make project decisions, replace domain knowledge, or substitute for tests, review, access controls, or project-specific policy.
+</Accordion>
+
+<Accordion title="What if the assistant ignores AGENTS.md?">
+The contract cannot force compliance. If the assistant is not respecting the operative frame, re-enter: give the activation instruction again, reread AGENTS.md, and re-establish the target and authority before continuing.
+</Accordion>
+
+<Accordion title="Do I need to re-activate the contract for every task in a session?">
+The contract remains active for the session unless the operator explicitly states it does not apply. However, you should re-activate if you detect drift — when the assistant is not using AGENTS.md as its operative frame for the next response.
+</Accordion>
+
+<Accordion title="Can I modify AGENTS.md for my project?">
+Yes. AGENTS.md is a starting point. You can extend the bootstrap section with project-specific context and add project-specific boundaries to the Do Not Touch section. Be careful not to dilute the core invariants.
+</Accordion>
+
+<Accordion title="What is the license?">
+SensecraftXStudio is licensed under CC BY-SA 4.0. You can share and adapt it with attribution, and derivative works must use the same license.
+</Accordion>
+
+<Accordion title='What does "smallest correct intervention" mean in practice?'>
+It means choosing the change that satisfies the requested outcome without expanding scope. A bug fix should not become a cleanup. A cleanup should not become an architecture change. If the smallest correct move is unclear, that is a stop condition — surface it before proceeding.
+</Accordion>
+
+<Accordion title="What happens when the assistant encounters a stop condition?">
+The assistant should name the missing or conflicting element, explain why it changes the move, identify the smallest action that would unblock the task, and wait. It should not invent a resolution or proceed on assumption. See [Stop Conditions](/contract/stop-conditions) for the full list.
+</Accordion>
+
+<Accordion title='What is "convergence" in the final response contract?'>
+Convergence is whether the task is: **converged** (complete and verified), **open** (useful work done but follow-up remains), **blocked** (a missing condition prevents the justified next move), or **divergent** (the available paths imply materially different outcomes and require operator choice).
+</Accordion>

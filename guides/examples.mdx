@@ -1,0 +1,113 @@
+---
+title: "Practical AGENTS.md Session Examples"
+sidebarTitle: "Examples"
+description: "Concrete task prompts, session closure examples, and common anti-patterns for AI-assisted bug fixes, implementation, and decision support."
+---
+
+Seeing `AGENTS.md` in use makes its rules concrete. The examples below show how activation, task framing, and final response closure work across three common session types — and what goes wrong when the contract is not properly engaged. Each example uses the same activation instruction; what differs is the task and what the contract requires in response to it.
+
+<Tabs>
+  <Tab title="Bug Fix">
+    Begin every session with the activation instruction before stating any task:
+
+    ```text
+    Read AGENTS.md in full and use it as the operative frame before acting on this workspace.
+    ```
+
+    Then give the task:
+
+    ```text
+    Review this repository and identify the smallest safe fix for the failing build.
+    ```
+
+    Under the contract, the assistant must close the real object (the specific component responsible for the failure, not the nearest plausible file), verify authority to modify it, check that the proposed fix does not expand scope into adjacent cleanup or restructuring, and verify the live result before closing.
+
+    A correctly contracted final response looks like this:
+
+    ```text
+    Touch: Updated the parser and its focused tests. Build configuration was not changed.
+
+    Ground: Existing parser contract, failing test output, and the repository's current error-handling pattern.
+
+    State: The focused tests pass. The full integration suite was not available in this environment.
+
+    Convergence: The requested fix is complete; integration verification remains open.
+    ```
+
+    Note that the assistant reports what it did **and** what it did not touch, what is verified **and** what remains open. Convergence is task state, not reassurance.
+  </Tab>
+  <Tab title="Bounded Implementation">
+    Activate the contract first:
+
+    ```text
+    Read AGENTS.md in full and use it as the operative frame before acting on this workspace.
+    ```
+
+    Then give the task:
+
+    ```text
+    Implement the requested change without expanding the existing architecture.
+    ```
+
+    The contract requires the assistant to:
+
+    1. **Close the real object** — identify the specific file, surface, or component that must change, distinct from the stated request and from nearby files that merely mention the topic
+    2. **Check for scope expansion** — determine whether the implementation stays contained or crosses a perimeter (new abstraction, policy change, unrelated file, irreversible consequence)
+    3. **Surface expansion before acting** — if the implementation would expand scope, name the crossing and wait for operator confirmation before proceeding
+    4. **Execute minimally** — use the smallest correct change; do not opportunistically restructure, clean up, or generalize from the single instance
+    5. **Verify the live surface** — confirm that the live result reflects the current source state before closing
+    6. **Report state** — close with Touch, Ground, State, and Convergence fields that reflect the actual task state
+
+    The contract explicitly prohibits transforming a bounded implementation task into cleanup, architecture work, or a reusable framework — even when the assistant judges such a transformation would be locally beneficial.
+  </Tab>
+  <Tab title="Decision Support">
+    Activate the contract first:
+
+    ```text
+    Read AGENTS.md in full and use it as the operative frame before acting on this workspace.
+    ```
+
+    Then give the task:
+
+    ```text
+    Compare these two approaches, separate verified evidence from assumptions, and recommend the smallest justified move.
+    ```
+
+    Decision support tasks are where epistemic discipline matters most. The contract requires the assistant to keep verified, inferred, and hypothetical states distinct **throughout** the comparison — not only in the final summary.
+
+    This means:
+
+    - Evidence drawn from the actual workspace (inspected files, confirmed outputs, real error messages) must be labelled as verified
+    - Reasoning that extends beyond what was directly observed must be labelled as inferred
+    - Projections about future behaviour or untested paths must be labelled as hypothetical
+    - Anything not inspected in the current environment must be named as uninspected
+
+    The recommendation must be grounded in the verified layer, not reconstructed from the assistant's confidence or fluency. A plausible-sounding recommendation that rests on uninspected assumptions is not a justified move — and the contract requires the assistant to surface that gap rather than smooth it away.
+
+    The Ground field in the final response should name the specific files, outputs, or rules that support the recommendation. If the ground is thin, Convergence should reflect that: `open` or `blocked`, not `converged`.
+  </Tab>
+</Tabs>
+
+## What NOT to Do
+
+The following approaches do not activate the contract and should be avoided:
+
+<Accordion title="Treating AGENTS.md as a passive reference">
+  Telling the assistant "refer to AGENTS.md if needed" or "AGENTS.md is available in this repo" does not activate the contract. The file must be read in full and established as the operative frame before any task is given. Passive availability is not activation.
+</Accordion>
+
+<Accordion title="Giving the task before the activation instruction">
+  If the task is given first, the assistant will begin constructing a plan under its default behaviour before the contract is active. Even if the activation instruction follows immediately, the initial framing has already been set without the contract's constraints. Always activate first.
+</Accordion>
+
+<Accordion title="Treating activation as a one-time event">
+  `AGENTS.md` must remain active throughout the session. It is not background documentation to read once and forget. If the contract drifts — becoming memory-only guidance or a rhetorical reference not reflected in execution — the correct recovery is re-entry: reread the file and reactivate before continuing.
+</Accordion>
+
+<Accordion title="Asking the assistant to summarize AGENTS.md instead of activating it">
+  Requesting a summary of `AGENTS.md` produces an account of what the contract says — not an active operative frame. The activation instruction requires the assistant to use the contract as the governing frame for the session, which is a different operation from describing its contents.
+</Accordion>
+
+<Tip>
+  The activation instruction must come before the task, in the same session turn or just before. Sequence matters: activation first, task second. Any other order risks a session that sounds contracted but is not.
+</Tip>

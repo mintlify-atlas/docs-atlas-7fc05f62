@@ -1,0 +1,66 @@
+---
+title: "Project Bootstrap: Filling in Instance Context"
+sidebarTitle: "Bootstrap"
+description: "How to fill every field in the AGENTS.md Project Bootstrap section so the contract has the instance-specific context it needs to govern project work."
+---
+
+The Project Bootstrap section in AGENTS.md is the instance-specific context that must be filled before the contract can provide meaningful project-specific guidance. It identifies the project name, the canonical location of the working files, any auxiliary working areas, the technical constraints the assistant must respect, and the absolute boundaries the assistant must never cross. Until this section is populated with real values, the contract is in force for general operating posture only — it cannot govern project-specific decisions.
+
+<Warning>
+An empty bootstrap means instance context is still open. Do not rely on the contract for project-specific guidance until this section is filled.
+</Warning>
+
+## Bootstrap Template
+
+Copy this template into the Project Bootstrap section of your `AGENTS.md` and replace each placeholder with a real value before starting a session.
+
+```markdown
+Project: (repo or project name; example: frontend-app)
+Canonical path: (where the main working version lives; example: C:\work\frontend-app)
+Auxiliary area: (linked folder for lab, storage, or staging material; example: C:\work\frontend-app-lab)
+Technical context: (main language, runtime, or hard constraint; example: TypeScript, local Windows workspace, limited git history)
+
+Do not touch: (only absolute project boundaries; example: production deploy folder)
+-
+```
+
+## Field Reference
+
+<ParamField path="Project" type="string" required>
+  The repo or project name the assistant is working in. This anchors every subsequent field — it tells the assistant which project's rules, structure, and history are relevant. Use the real repository or folder name, not a description.
+</ParamField>
+
+<ParamField path="Canonical path" type="string" required>
+  The filesystem path where the main working version of the project lives. The assistant uses this to verify that it is operating in the right location before acting. A mismatched or missing path is a hold condition.
+</ParamField>
+
+<ParamField path="Auxiliary area" type="string">
+  A linked folder for lab, storage, or staging material. Use this when the project has a companion workspace — a scratch folder, a lab directory, or a staging location — that the assistant may need to read or write. Leave blank if no auxiliary area exists.
+</ParamField>
+
+<ParamField path="Technical context" type="string" required>
+  The main language, runtime, or hard constraint the assistant must respect. This is the single most important technical fact about the project. State it concisely: language, runtime version, and any non-negotiable constraint (for example, no breaking changes to the public API).
+</ParamField>
+
+<ParamField path="Do not touch" type="string" required>
+  Absolute project boundaries the assistant must never cross. List only real boundaries — specific folders, files, or systems the assistant must not modify regardless of instructions. Each entry on its own line prefixed with `-`. Vague or overly broad entries weaken the contract.
+</ParamField>
+
+## Filled Example
+
+This example shows a complete bootstrap for a realistic project:
+
+```markdown
+Project: payments-service
+Canonical path: /home/user/work/payments-service
+Auxiliary area: /home/user/work/payments-service-lab
+Technical context: TypeScript, Node.js 20, no breaking changes to public API
+
+Do not touch: production deploy folder, database migration files
+- /home/user/work/payments-service/deploy/prod
+- /home/user/work/payments-service/db/migrations
+```
+
+<Tip>
+Keep the bootstrap specific. Vague entries ("all important files") are not boundaries — they are noise that weakens the contract.
+</Tip>

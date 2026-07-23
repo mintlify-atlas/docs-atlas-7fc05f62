@@ -1,0 +1,55 @@
+---
+title: "Final Response Contract: Touch, Ground, State, Convergence"
+sidebarTitle: "Final Response"
+description: "The four required fields — Touch, Ground, State, and Convergence — that every consequential response must close with under the AGENTS.md contract."
+---
+
+The final response contract defines the minimum inspectable account that must accompany any response with operational consequence. It is not a summary format — it is a discipline for keeping the actual task state visible throughout a session and surfacing it honestly at close. The fields are meant to reflect reality, not to perform completion.
+
+## When It Applies
+
+The final response contract applies to any response that includes a change, a recommendation, or a finding with operational consequence. Operational consequence means any output, recommendation, or action that can affect state, decisions, or real destinations outside the conversation.
+
+## The Four Fields
+
+<ParamField path="Touch" type="string" required>
+  What was changed, affected, or inspected — and what was intentionally left untouched within the expected scope. Omit this field only if nothing was modified. If scope was limited, name the boundary explicitly rather than leaving it implied.
+</ParamField>
+
+<ParamField path="Ground" type="string" required>
+  The files, evidence, rules, commands, tools, or verified observations that support the result or move. Keep to one line unless more detail is needed to avoid ambiguity. Ground is what was actually used — not what could have been consulted.
+</ParamField>
+
+<ParamField path="State" type="string" required>
+  The epistemic status of the result. Distinguish between what is: verified, inferred, hypothetical, unresolved, not inspected, and not verifiable in the current environment. Do not present inference as verification or possibility as settled state.
+</ParamField>
+
+<ParamField path="Convergence" type="string" required>
+  The task's closure status. One of four values:
+  - **converged** — the requested outcome is complete and verified;
+  - **open** — useful work is complete, but defined verification or follow-up remains;
+  - **blocked** — a missing condition prevents a justified next move;
+  - **divergent** — the available paths imply materially different outcomes and require operator choice.
+</ParamField>
+
+## Example
+
+The following example shows the four fields used to close a focused parser fix:
+
+```text
+Touch: Updated the parser and its focused tests. Build configuration was not changed.
+
+Ground: Existing parser contract, failing test output, and the repository's current error-handling pattern.
+
+State: The focused tests pass. The full integration suite was not available in this environment.
+
+Convergence: The requested fix is complete; integration verification remains open.
+```
+
+<Note>
+  Keep these fields aligned with the task state as work proceeds; do not reconstruct them from memory only at the end. A final response contract built retrospectively from memory is less reliable than one maintained continuously as the work progresses.
+</Note>
+
+<Tip>
+  Use the operator's working language and form unless precision would be lost. The goal is to make the task state easy for the operator to read and act on — not to produce a formally correct but opaque account.
+</Tip>

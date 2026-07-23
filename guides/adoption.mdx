@@ -1,0 +1,72 @@
+---
+title: "Adopting AGENTS.md in Your Project"
+sidebarTitle: "Adoption"
+description: "How to bring AGENTS.md into an existing project, fill in the bootstrap section, and activate it correctly before starting any AI-assisted session."
+---
+
+SensecraftXStudio is a single reusable file — `AGENTS.md` — that gives an AI assistant a clear operating contract before it inspects files, changes code, recommends decisions, or reports that work is complete. Adoption requires no install, no SDK, and no framework integration. Copy the file, fill in the bootstrap section, and give the activation instruction at the start of each session.
+
+## Who Should Adopt It
+
+`AGENTS.md` is intended for:
+
+- Developers using AI agents inside existing repositories
+- Maintainers reviewing AI-generated changes
+- Technical leads delegating bounded implementation work
+- Operators using assistants for repository analysis
+- Teams that need clearer distinction between inference and verification
+- Projects where a plausible but misplaced change can create real maintenance cost
+
+<Note>
+  `AGENTS.md` travels with the repository. It is most useful when the assistant can inspect or affect real project material — not as passive documentation, but as an active contract governing each session.
+</Note>
+
+## Adoption Steps
+
+<Steps>
+  <Step title="Copy AGENTS.md into your repository root">
+    Download `AGENTS.md` from the SensecraftXStudio repository and place it in the root of your target project. No other files are required.
+  </Step>
+  <Step title="Fill in the Project Bootstrap section">
+    Open `AGENTS.md` and complete every field in the **Project Bootstrap** section before using the contract for any instance-specific work. Leave no field blank if you intend the contract to govern that context.
+  </Step>
+  <Step title="Start a fresh assistant session">
+    Begin a new session with your AI assistant and ensure it has access to the workspace containing the project. Do not carry over unrelated session context from a prior run.
+  </Step>
+  <Step title="Give the activation instruction before any task">
+    Before describing any task, give the assistant this instruction:
+
+    ```text
+    Read AGENTS.md in full and use it as the operative frame before acting on this workspace.
+    ```
+
+    Only then give it the real task. The activation instruction must precede the task — not follow it.
+  </Step>
+</Steps>
+
+## What to Customize: The Project Bootstrap Section
+
+The **Project Bootstrap** section is the only part of `AGENTS.md` that requires per-project editing. Each field has a specific scope:
+
+| Field | Purpose |
+| ----- | ------- |
+| **Project** | The repository or project name (e.g. `frontend-app`) |
+| **Canonical path** | Where the main working version of the project lives on disk (e.g. `C:\work\frontend-app`) |
+| **Auxiliary area** | A linked folder used for lab work, storage, or staging material (e.g. `C:\work\frontend-app-lab`) |
+| **Technical context** | The main language, runtime, or hard constraint the assistant must respect (e.g. `TypeScript, local Windows workspace, limited git history`) |
+| **Do not touch** | Only absolute project boundaries the assistant must never cross (e.g. a production deploy folder) |
+
+<Warning>
+  An empty bootstrap means instance context is still open. The contract will still govern general session behaviour, but it cannot anchor the assistant to your specific project, paths, or constraints. Fill the bootstrap section before relying on the contract for instance-specific work.
+</Warning>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Bootstrap Reference" icon="file-code" href="/reference/bootstrap">
+    The full bootstrap template with field-by-field guidance and copy-ready examples.
+  </Card>
+  <Card title="Session Workflow" icon="arrow-right-arrow-left" href="/guides/session-workflow">
+    How a properly contracted session flows from activation through task execution to closure.
+  </Card>
+</CardGroup>

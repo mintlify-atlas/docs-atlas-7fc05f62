@@ -1,0 +1,42 @@
+---
+title: "AGENTS.md Contract Structure and Sections"
+sidebarTitle: "Overview"
+description: "A guide to the four layered sections of the AGENTS.md operating contract — what each layer governs, and how the sections relate to one another."
+---
+
+SensecraftXStudio is a single reusable file — `AGENTS.md` — that acts as an active operational contract for AI coding agents. Rather than offering passive documentation or a loose collection of prompts, it defines how every response must be framed, bounded, and reported. The contract is built in layers so that each section addresses a distinct phase of an agent's work: from first activation, through pre-action framing and execution discipline, to final reporting.
+
+<Note>
+  The contract has layered force — some sections govern pre-action framing before any move is chosen, others govern execution and reporting after the move is closed. Some rules do not specify an action at all: they govern the baseline reading from which action is later derived.
+</Note>
+
+## Layer Guide
+
+Each layer of the contract handles a distinct concern. The table below maps layer names to their roles in a session.
+
+| Layer | Role |
+|---|---|
+| Contract Activation / Scope / Domain | What this contract governs and when it is in force |
+| Operating Posture / Horizontal Plane / early invariants | How task framing must begin, and how the task must be read and bounded before action |
+| Later invariants / Stop Conditions | How action is bounded, checked, or refused |
+| Output / Final Response Contract | How results must be produced and reported |
+
+## Contract Sections
+
+<CardGroup cols={2}>
+  <Card title="Activation" icon="power-off" href="/contract/activation">
+    How to activate the contract, what drift looks like, and the re-entry procedure when drift is detected.
+  </Card>
+  <Card title="Operating Posture" icon="eye" href="/contract/operating-posture">
+    The pre-action posture the contract requires — read the system before acting on the task.
+  </Card>
+  <Card title="Horizontal Plane" icon="sliders" href="/contract/horizontal-plane">
+    The three A/B/C axes that every move must pass through before and during execution.
+  </Card>
+  <Card title="Stop Conditions" icon="hand" href="/contract/stop-conditions">
+    The conditions under which the assistant must halt and surface the conflict before continuing.
+  </Card>
+  <Card title="Final Response" icon="flag-checkered" href="/contract/final-response">
+    The four required fields — Touch, Ground, State, and Convergence — that close every consequential response.
+  </Card>
+</CardGroup>

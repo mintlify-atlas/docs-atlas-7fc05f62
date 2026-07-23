@@ -1,0 +1,73 @@
+{
+  "projectType": "general",
+  "projectName": "SensecraftXStudio",
+  "projectDescription": "A reusable AGENTS.md operating contract that enforces disciplined, bounded, and reviewable AI behavior in technical and coding workflows.",
+  "theme": "luma",
+  "primaryColor": "#4F46E5",
+  "lightColor": "#EEF2FF",
+  "darkColor": "#1E1B4B",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "what-it-solves"
+            ]
+          },
+          {
+            "group": "The Contract",
+            "pages": [
+              "contract/overview",
+              "contract/activation",
+              "contract/operating-posture",
+              "contract/horizontal-plane",
+              "contract/stop-conditions",
+              "contract/final-response"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "guides/adoption",
+              "guides/session-workflow",
+              "guides/scope-and-authority",
+              "guides/examples"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "reference/invariants",
+              "reference/bootstrap",
+              "reference/faq"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Single-file drop-in operating contract for AI coding agents",
+    "Pre-action context closure (object, authority, mode)",
+    "Explicit stop conditions for ambiguous or incoherent states",
+    "Minimal execution discipline — smallest correct intervention",
+    "Structured final response contract (Touch, Ground, State, Convergence)",
+    "Separation of verified, inferred, hypothetical, and unresolved epistemic states",
+    "Consequential scope expansion surfacing before execution",
+    "Session drift detection and re-entry protocol"
+  ],
+  "publicApiSurface": [
+    "AGENTS.md — canonical operational contract file",
+    "Contract Activation instruction",
+    "Project Bootstrap section",
+    "Horizontal Plane (A/B/C axes)",
+    "Derived Invariants (1–11)",
+    "Stop Conditions",
+    "Final Response Contract fields: Touch, Ground, State, Convergence"
+  ]
+}
